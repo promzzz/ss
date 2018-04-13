@@ -61,7 +61,7 @@ class DataEngine(object):
         newList = []
         if len(beCode) > 0:
             for code,val in stockList.items():
-                if code in beCode.index.values and val['name'] != beCode.loc[code].at['name'] or code not in beCode.index.values:
+                if code in beCode.index.values and val['name'] != beCode.loc[code].at['name'] and datetime.date.today() != beCode.loc[code].at['date'] or code not in beCode.index.values:
                     newList.append(val)
             if len(newList) > 0: db.insertAll('stock_codes_list',newList)
         else:
@@ -602,6 +602,8 @@ if __name__ == '__main__':
     # print(de.getHistData('600960',[],250))
     # print(de.getHistListData())
     de.checkData()
+    # print(de.getCodeList().date.values.max())
+    # de.updateCodeList()
     e = datetime.datetime.now()
 
     print(e-s)
