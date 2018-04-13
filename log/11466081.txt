@@ -1,0 +1,14 @@
+2017-07-28 09:52:22 订单状态：true
+2017-07-28 09:52:22 卖出股票 [601398] 工商银行 价格: 5.48 数量: 7400
+2017-07-28 09:52:22 等待一秒钟，查看订单601398是否成交
+2017-07-28 09:52:25 订单状态：true
+2017-07-28 09:52:25 买入股票 [601988] 中国银行 价格: 3.83 数量: 10600
+2017-07-31 09:30:43 ['Traceback (most recent call last):\n', '  File "D:\\c\\TacticsEngine.py", line 79, in run\n    self.__tactics(event)\n', '  File "D:\\c\\TacticsEngine.py", line 66, in __tactics\n    self.tactics(event)\n', '  File "D:\\c\\Tacticses\\11466081\\tactics.py", line 50, in tactics\n    self.order(\'sell\',code,self.stockPool[code][\'count\'])\n', '  File "D:\\c\\TacticsEngine.py", line 175, in order\n    self.SW.updateLogLable.emit(\'订单状态：%s\' % result[\'result\'])\n', "TypeError: 'NoneType' object is not subscriptable\n"]
+2017-07-31 09:52:19 订单状态：false
+2017-07-31 09:52:19 卖出股票 [601988] 中国银行 价格: 3.92 数量: 10600
+2017-07-31 09:52:20 订单状态：false
+2017-07-31 09:52:20 买入股票 [601398] 工商银行 价格: 5.55 数量: 15000
+2017-07-31 09:54:08 订单状态：true
+2017-07-31 09:54:08 买入股票 [601398] 工商银行 价格: 5.53 数量: 7500
+2017-08-02 10:26:38 订单状态：false
+2017-08-02 10:26:38 卖出股票 [601398] 工商银行 价格: 5.67 数量: 7500

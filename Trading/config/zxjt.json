@@ -1,0 +1,22 @@
+{
+  "headers":{
+    "Accept":"*/*",
+    "Accept-Encoding":"gzip, deflate, sdch, br",
+    "Accept-Language":"zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3",
+    "User-Agent":"Mozilla/5.0 (Windows NT 6.1; WOW64; rv:54.0) Gecko/20100101 Firefox/54.0"
+  },
+  "login":"https://newetrade.csc108.com/j_spring_security_check",
+  "loginPage":"https://newetrade.csc108.com/login/loginMain.jspx",
+  "checkCode":"https://newetrade.csc108.com/commons/image.jsp",
+  "checkStatus":"https://newetrade.csc108.com/login/validatePassword.json",
+  "fundPool":"https://newetrade.csc108.com/mainHomePage/main_zcgy_List.json",
+  "stockPool":"https://newetrade.csc108.com/mainHomePage/main_ccgp_list.json",
+  "entrust":"https://newetrade.csc108.com/securityfind/securityEntrust_wtcx.json?selectType=%s",
+  "clinchDeal":"https://newetrade.csc108.com/securityfind/securityBuysFindListInit.json?selectType=%s",
+  "revocableEntrust":"https://newetrade.csc108.com/securityfind/securityOrdersCancelListInit.json?_=%d",
+  "revocableEntrustSubmit":"https://newetrade.csc108.com/securityfind/securityOrdersCancelSubmit.json?&buysType=%s&stkcode=%s&stkname=%s&ordersno=%s&orderdate=%s&_=%d",
+  "tradeCheck":"https://newetrade.csc108.com/trading/securitybuys.json?bsflag=%s&stkcode=%s&buyflag=%s&_=%d",
+  "tradeSubmit":"https://newetrade.csc108.com/trading/tradingTransSubmit.json",
+  "newStockCount":"https://newetrade.csc108.com/securityfind/newStockRepurchEduQuery.json?_=%d",
+  "newStockList":"https://newetrade.csc108.com/securityfind/newStockRepuchFindJson.json?_=%d"
+}
