@@ -122,14 +122,16 @@ class PostgreSQL:
                 val = "'%s'" %  re.sub("'", r"''", str(val))
 
             values += '%s,' % val
-
+        # sqlstr = 'INSERT INTO %s (%s) VALUES (%s) RETURNING id;' % (table, columns[:-1], values[:-1])
         sqlstr = 'INSERT INTO %s (%s) VALUES (%s);' % (table, columns[:-1], values[:-1])
         # INSERT INTO "public"."test" ("id", "name") VALUES ('6', 'a');
         # print(sqlstr)
         self.cur.execute(sqlstr)
-        result = self.cur.fetchone()[0]
+        # result = self.cur.fetchone()
+        # print(type(result))
+        # result = self.cur.fetchone()[0]
         self.conn.commit()
-        return result
+        # return result
 
     def insertAll(self,table = 'test',value = []):
         if len(value) == 0: return
