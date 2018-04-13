@@ -11,6 +11,8 @@ import numpy
 from datetime import *
 from dateutil import tz
 
+# 手动运行买卖脚本
+
 user = user[0]
 
 name = 'smallvalue'
@@ -85,10 +87,10 @@ for code,val in realData.items():
     if code in stockPool.keys():
         if val['now'] >= val['close'] * 1.0998: bl.append(code)
 
-        if val['now'] >= val['close'] * 1.0998: 
+        if val['now'] >= val['close'] * 1.0998:
             h = DE.getHistData(code,['high','close','low'],130)
             ss[code] = val['now']*3 - h.high.max() - h.low.min() - h.close.values[:15].mean()
-        
+
 
 stocks = pandas.DataFrame(list(ss.values()),index = ss.keys())
 stocks.columns = ['score']
