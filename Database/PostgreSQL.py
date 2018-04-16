@@ -122,17 +122,18 @@ class PostgreSQL:
                 val = "'%s'" %  re.sub("'", r"''", str(val))
 
             values += '%s,' % val
-        # sqlstr = 'INSERT INTO %s (%s) VALUES (%s) RETURNING id;' % (table, columns[:-1], values[:-1])
-        sqlstr = 'INSERT INTO %s (%s) VALUES (%s);' % (table, columns[:-1], values[:-1])
-        # INSERT INTO "public"."test" ("id", "name") VALUES ('6', 'a');
-        # print(sqlstr)
-        self.cur.execute(sqlstr)
-        # result = self.cur.fetchone()
-        # print(type(result))
-        # result = self.cur.fetchone()[0]
-        self.conn.commit()
-        # return result
 
+        key = self.custom("select pg_constraint.conname as pk_name,pg_attribute.attname as colname,pg_type.typname as typename from pg_constraint  inner join pg_class on pg_constraint.conrelid = pg_class.oid inner join pg_attribute on pg_attribute.attrelid = pg_class.oid and  pg_attribute.attnum = pg_constraint.conkey[1] inner join pg_type on pg_type.oid = pg_attribute.atttypid where pg_class.relname = '%s' and pg_constraint.contype='p'" % table)
+
+        sqlstr = 'INSERT INTO %s (%s) VALUES (%s) RETURNING ' + key[0][1] + ';' if len(key) > 0 else 'INSERT INTO %s (%s) VALUES (%s);'
+        sqlstr = sqlstr % (table, columns[:-1], values[:-1])
+
+        self.cur.execute(sqlstr)
+        if len(key) > 0: result = self.cur.fetchone()[0]
+        self.conn.commit()
+        if len(key) > 0: return result
+
+    # 批量插入数据列表
     def insertAll(self,table = 'test',value = []):
         if len(value) == 0: return
         sql = 'INSERT INTO %s (' % table
