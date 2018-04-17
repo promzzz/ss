@@ -21,9 +21,8 @@ from Helpers.RelatedDZH import get_finance_365_net,get_except_365_net,get_financ
 from Helpers.RelatedTool import *
 
 # from setting import databases
-from setting import DBInfo,system
+from setting import *
 
-tempdir = system['tempdir']
 DB,DBSet = (MySQL,True) if system['database'] == 'MySQL' else (PostgreSQL,False)
 
 class DataEngine(object):

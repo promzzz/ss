@@ -22,7 +22,7 @@ class CaseEngine:
 
         self.uc = userCenter
 
-        self.isActive = True if self.uc.info['aotuRun'] else False
+        self.isActive = True if self.uc.info['autoRun'] else False
 
 
         # 载入系统公用时钟引擎、行情引擎、数据引擎

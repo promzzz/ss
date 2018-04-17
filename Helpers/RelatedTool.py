@@ -6,9 +6,8 @@ import json
 import six
 import pytesseract
 
-from setting import DBInfo,system
+from setting import *
 
-tempdir = system['tempdir']
 
 def formatWebJSON(txtdata):
     txtdata = txtdata.content
@@ -180,7 +179,7 @@ def blackNameList():
         codes = f.readlines()
         codes = [code.replace("\n", "") for code in codes]
     return codes
-    
+
 
 if __name__ == '__main__':
     a = verifyCode('./2017.jpg', 'zxjt')

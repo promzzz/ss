@@ -6,10 +6,7 @@ from PyQt5 import QtGui
 import time
 import datetime
 
-from setting import system
-
-logdir = system['logdir']
-imgdir = system['imgdir']
+from setting import *
 
 class MainInterface(QtWidgets.QWidget):
     startTime = datetime.datetime.now()
@@ -19,8 +16,8 @@ class MainInterface(QtWidgets.QWidget):
         # self.setGeometry(50, 50, 800, 434)
         self.setGeometry(50, 50, 800, 355)
 
-        self.timer = QtCore.QTimer()      
-        self.timer.setInterval(1000)       
+        self.timer = QtCore.QTimer()
+        self.timer.setInterval(1000)
         self.timer.start()
         self.timer.timeout.connect(self.onTimerOut)
 
@@ -49,7 +46,7 @@ class MainInterface(QtWidgets.QWidget):
 
         self.status = QtWidgets.QLabel(self.groupBox)
         self.status.setMaximumSize(QtCore.QSize(88, 16777215))
-        
+
         self.netStatus = QtWidgets.QLabel(self.groupBox)
         self.netStatus.setMaximumSize(QtCore.QSize(17, 16777215))
         self.netStatus.setPixmap(QtGui.QPixmap("%son.png" % imgdir))
@@ -76,7 +73,7 @@ class MainInterface(QtWidgets.QWidget):
         self.sysTimeLCD.setDigitCount(19)
         self.sysTimeLCD.setMode(QtWidgets.QLCDNumber.Dec)
         self.sysTimeLCD.setSegmentStyle(QtWidgets.QLCDNumber.Flat)
-        
+
         self.runTimeLCD = QtWidgets.QLCDNumber(self.groupBox)
         self.runTimeLCD.setMaximumSize(QtCore.QSize(106, 16777215))
         self.runTimeLCD.setFrameShape(QtWidgets.QFrame.NoFrame)
@@ -84,7 +81,7 @@ class MainInterface(QtWidgets.QWidget):
         self.runTimeLCD.setDigitCount(10)
         self.runTimeLCD.setMode(QtWidgets.QLCDNumber.Dec)
         self.runTimeLCD.setSegmentStyle(QtWidgets.QLCDNumber.Flat)
-        
+
 
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.groupBox)
         self.horizontalLayout.addWidget(self.sysTimeText)
@@ -97,7 +94,7 @@ class MainInterface(QtWidgets.QWidget):
         self.horizontalLayout.addWidget(self.startBtn)
         self.horizontalLayout.addWidget(self.stopBtn)
         self.horizontalLayout.addWidget(self.exitBtn)
-        
+
 
         self.verticalLayout = QtWidgets.QVBoxLayout(self)
         self.verticalLayout.setObjectName("")
@@ -111,7 +108,7 @@ class MainInterface(QtWidgets.QWidget):
         self.runTimeLCD.display(str(runTime)[:-7])
 
         n = 0
-        for i in self.runInfo.get('ces'): 
+        for i in self.runInfo.get('ces'):
             if i.isActive: n+=1
         self.status.setText('共%s个账户在运行' % n)
 
@@ -141,8 +138,8 @@ class SubInterface(QtWidgets.QWidget):
 
         self.showMessage.connect(self.__updateLogLable)
 
-        self.timer = QtCore.QTimer()      
-        self.timer.setInterval(1000)       
+        self.timer = QtCore.QTimer()
+        self.timer.setInterval(1000)
         self.timer.start()
         self.timer.timeout.connect(self.__updateStatus)
 
@@ -153,7 +150,7 @@ class SubInterface(QtWidgets.QWidget):
 
         self.controlBtn = QtWidgets.QPushButton(self.widget)
         self.controlBtn.setMaximumSize(QtCore.QSize(40, 16777215))
-        
+
         if self.ce.isActive:
             self.controlBtn.setText("停止")
             self.controlBtn.clicked.connect(self.caseStop)
@@ -267,9 +264,9 @@ class SubInterface(QtWidgets.QWidget):
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.groupBox)
         self.logLabel = QtWidgets.QLabel(self.groupBox)
         self.horizontalLayout_3.addWidget(self.logLabel)
-    
+
     def __updateStatus(self):
-        
+
         pal = 0
         ttl = self.uc.fundPool['employ']
         for tac, pl in self.uc.tpl.items(): pal += pl
@@ -297,7 +294,7 @@ class SubInterface(QtWidgets.QWidget):
 
 
     def caseRun(self):
-        if not self.ce.isActive: 
+        if not self.ce.isActive:
             self.ce.start()
             self.controlBtn.setText('停止')
             self.controlBtn.clicked.connect(self.caseStop)
@@ -341,7 +338,7 @@ class SubInterface(QtWidgets.QWidget):
         self.__record2file(string)
         string = string[:100]+'……' if len(string) > 100 else string
         self.logLabel.setText(string)
-        
+
     # @QtCore.pyqtSlot()
     def __showStauts(self):
         self.ei = EjectInterface(self.uc.par, self.uc.info['userid'])
@@ -362,7 +359,7 @@ class EjectInterface(QtWidgets.QWidget):
     """docstring for EjectInterface"""
     def __init__(self, par, name=''):
         super(EjectInterface, self).__init__()
-        
+
         self.setWindowTitle("账号%s参数状态" % name)
 
         top = self.draWidget(par['set'])
@@ -384,7 +381,7 @@ class EjectInterface(QtWidgets.QWidget):
             Label.setText(string % key)
 
             top += 25
-           
+
             table = QtWidgets.QTableWidget(self)
             table.setGeometry(left,top,right,len(val)*25)
             table.setContextMenuPolicy(QtCore.Qt.DefaultContextMenu)
@@ -425,8 +422,8 @@ class EjectInterface(QtWidgets.QWidget):
 
         return top
 
-        
-        
+
+
 if __name__ == '__main__':
     parm = {}
     parm['轮动间隔'] = 3

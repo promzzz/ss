@@ -9,7 +9,7 @@ from CaseEngine import CaseEngine
 from ClockEngine import ClockEngine
 from QuotationEngine import QuotationEngine
 from InterfaceEngine import MainInterface
-from setting import user,system
+from setting import *
 
 class MainEngine:
 
@@ -17,9 +17,9 @@ class MainEngine:
 
     def __init__(self, tzinfo=None):
 
-        if not os.path.exists(system['imgdir']): os.makedirs(system['imgdir'])
-        if not os.path.exists(system['logdir']): os.makedirs(system['logdir'])
-        if not os.path.exists(system['tempdir']): os.makedirs(system['tempdir'])
+        if not os.path.exists(imgdir): os.makedirs(imgdir)
+        if not os.path.exists(logdir): os.makedirs(logdir)
+        if not os.path.exists(tempdir): os.makedirs(tempdir)
 
         self.ui = QApplication(sys.argv)
 
@@ -34,8 +34,8 @@ class MainEngine:
 
         self.si = {}
         self.ces = []
-        
-        for i in user:
+
+        for i in users:
             ce = CaseEngine(UserCenter(i), self.ce, self.qe, self.de)
             self.ces.append(ce)
             self.si[i['userid']] = ce.si
@@ -51,7 +51,7 @@ class MainEngine:
             self.MainInterface = MainInterface(control)
             self.MainInterface.addSon(self.si)
             self.MainInterface.show()
-            
+
             sys.exit(self.ui.exec_())
 
     def start(self):

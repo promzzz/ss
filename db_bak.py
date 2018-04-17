@@ -8,9 +8,8 @@ from datetime import *
 import os
 import re
 
-from setting import DBInfo,system
+from setting import *
 
-tempdir = system['tempdir']
 DB,DBSet = (MySQL,True) if system['database'] == 'MySQL' else (PostgreSQL,False)
 
 start = datetime.now()
@@ -34,7 +33,7 @@ for t in db.tableList:
     file = open(path, 'a', encoding='utf-8')
 
     for i in range(0,count,5000):
-        
+
         value = db.select(t, columns, limit=[i,5000])
         for v in value:
             x = '('
