@@ -18,11 +18,8 @@ system = json.loads(open(Configure+'system.json','r').read())
 users = json.loads(open(Configure+'users.json','r').read())
 
 print(DBInfo,system)
+print(users)
 
-for i in users:
-    for k,v in i.items(): 
-        if k == 'uname':
-            print(v.encode('utf-8'))
 # 数据库设置
 # DBInfo = {
 #     'host':'localhost',             # 主机地址
