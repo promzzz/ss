@@ -1,5 +1,5 @@
 {
-    "host": "localhost",
+    "host": "192.168.147.1",
     "user":"postgres",
     "password":"root",
     "database":"new_ss"

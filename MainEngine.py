@@ -45,9 +45,11 @@ class MainEngine:
                     print('您的输入不正确，请重新输入数字!')
 
             user["autoRun"] = input('是否自动运行(y/n):')
+            user["show"] = input('是否图形化(y/n):')
 
             user['mode'] =  True if user["mode"] == 'y' else False
             user["autoRun"] = True if user["autoRun"] == 'y' else False
+            user["show"] = True if user["show"] == 'y' else False
 
             users.append(user)
 
@@ -74,9 +76,10 @@ class MainEngine:
         self.ces = []
 
         for i in users:
+            i['status'] = False
             ce = CaseEngine(UserCenter(i), self.ce, self.qe, self.de)
             self.ces.append(ce)
-            self.si[i['userid']] = ce.si
+            if i['show']: self.si[i['userid']] = ce.si
 
         control = dict(
             start = self.start,
@@ -85,12 +88,11 @@ class MainEngine:
             ces = self.ces
             )
 
-        if system.get('display') == 'GUI':
-            self.MainInterface = MainInterface(control)
-            self.MainInterface.addSon(self.si)
-            self.MainInterface.show()
+        self.MainInterface = MainInterface(control)
+        self.MainInterface.addSon(self.si)
+        self.MainInterface.show()
 
-            sys.exit(self.ui.exec_())
+        sys.exit(self.ui.exec_())
 
     def start(self):
         for ce in self.ces:

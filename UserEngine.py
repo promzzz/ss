@@ -236,7 +236,7 @@ class UserEngine(object):
 
                 where = ["code = '%s'" % i[0], "date > '%s'" % res[0][0].date()]
                 hist = db.select('stock_day_data', ['high','low'], where, ['date DESC'])
-                
+
                 # 假如有数据则重新赋值给最高及最低
                 if len(hist) > 0: high, low = max([i[0] for i in hist]),min([i[1] for i in hist])
 
