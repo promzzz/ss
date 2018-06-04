@@ -17,7 +17,7 @@ class MySQL:
 
         # 使用数据库
         self.cur.execute('USE ' + db['database'])
-        
+
         self.cur.execute('SHOW TABLES')
         self.tableList = [table[0] for table in self.cur.fetchall()]
 
@@ -107,8 +107,8 @@ class MySQL:
             values += '%s,' % val
 
         sql = 'INSERT INTO `%s` (%s) VALUES (%s)' % (table, columns[:-1], values[:-1])
-        # print(sql)
         self.cur.execute(sql)
+        return self.cur.lastrowid
         #INSERT INTO stock_399001_day VALUES ('1','2','3','4','5','6','7','8','9','0','10')
 
     def insertAll(self,table = 'test',value = []):
@@ -162,7 +162,7 @@ class MySQL:
         if len(where) == 0: return
 
         sql = 'DELETE FROM `%s` where ' % table
-            
+
         for field in where: sql += field + ' and '
 
         self.cur.execute(sql[:-5])
@@ -221,7 +221,7 @@ class MySQL:
         sql = 'ALTER TABLE  `%s`' % table
 
         for field in fields: sql += 'DROP `%s`,' % field
-        
+
         self.cur.execute(sql[:-1])
 
     def closeLink(self):

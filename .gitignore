@@ -4,3 +4,4 @@ __pycache__/
 *.pyc
 *.pyd
 
+__pycache__/MainEngine.cpython-36.pyc
